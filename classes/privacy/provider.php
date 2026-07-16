@@ -14,14 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Privacy provider for filter_chemjax.
- *
- * @package    filter_chemjax
- * @copyright  2026 (current maintainer)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 namespace filter_chemjax\privacy;
 
 /**

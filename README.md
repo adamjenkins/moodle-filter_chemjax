@@ -47,6 +47,6 @@ If you are upgrading from a previous version:
 
 ## License
 
-This plugin is licensed under the GNU General Public License v3. See LICENSE for details.
+This plugin is licensed under the GNU General Public License v3 or later (http://www.gnu.org/copyleft/gpl.html).
 
 Third-party libraries (MathJax 2 extensions) are licensed under the Apache License 2.0. See `thirdpartylibs.xml` for details.
