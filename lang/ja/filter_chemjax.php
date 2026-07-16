@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['bondlen'] = '結合の長さ';
-$string['bondlen_desc'] = '単結合、二重結合や三重結合の長さを 単位:mm で設定できます。';
+$string['bondlen_desc'] = '構造式を描画する際の標準結合長（xy-pic の任意単位、デフォルト 20）。';
 $string['filtername'] = 'ChemJax';
 $string['mathjaxurl'] = 'MathJax 2 の URL';
 $string['mathjaxurl_desc'] = 'ChemJax 専用レンダラーが使用する MathJax 2.7.x のベース URL（サイトの MathJax フィルタには影響しません）。CDN を避けるにはローカルコピーを指定してください。';

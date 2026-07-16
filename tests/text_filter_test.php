@@ -21,7 +21,7 @@ namespace filter_chemjax;
  *
  * @package    filter_chemjax
  * @category   test
- * @copyright  2026 (current maintainer)
+ * @copyright  2026 Adam Jenkins <adam@wisecat.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers \filter_chemjax\text_filter
  */

@@ -18,7 +18,7 @@
  *
  * @module     filter_chemjax/loader
  * @copyright  2017 Kenichi Miura (miura-k@tokyo-kasei.ac.jp)
- * @copyright  2026 (current maintainer)
+ * @copyright  2026 Adam Jenkins <adam@wisecat.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
