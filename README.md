@@ -4,7 +4,12 @@ A Moodle 5.x text filter that renders chemistry notation using the `\cjx{...}` s
 
 ## Features
 
-The ChemJax filter automatically detects and renders chemical structure formulas written in `\cjx{...}` syntax within course content. Formulas are rendered in an iframe-isolated MathJax 2 environment, preventing conflicts with the site's own MathJax instance.
+The ChemJax filter automatically detects and renders chemical structure formulas using the `\cjx{...}` syntax within course content. The filter supports multiple input formats:
+
+- **Bare runs:** `\cjx{...}` — standalone chemistry calls, optionally separated by `\\` line breaks
+- **Math-delimited:** `$$..$$`, `\(...\)`, `\[...\]` containing `\cjx` calls within math regions
+
+Formulas are rendered in an iframe-isolated MathJax 2 environment, preventing conflicts with the site's own MathJax instance. If rendering takes longer than 20 seconds, the source text remains visible as a fallback.
 
 ## Requirements
 
