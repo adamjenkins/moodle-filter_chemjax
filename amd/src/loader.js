@@ -104,13 +104,24 @@ const enhance = (root) => {
 /**
  * Give up on an iframe: remove it and flag the visible fallback source.
  *
+ * The title is a nice-to-have enhancement on top of the fallback text (which
+ * is already visible once the iframe is removed), so a getString() rejection
+ * must not surface as an unhandled promise rejection in the parent page.
+ *
  * @param {HTMLIFrameElement} iframe
  * @param {HTMLElement} span
  */
-const fail = async(iframe, span) => {
+const fail = (iframe, span) => {
     frames.delete(iframe.contentWindow);
     iframe.remove();
-    span.title = await getString('rendererfailed', 'filter_chemjax');
+    getString('rendererfailed', 'filter_chemjax')
+        .then((s) => {
+            span.title = s;
+            return;
+        })
+        .catch(() => {
+            // Fallback source text is already visible; the title is optional.
+        });
 };
 
 /**
