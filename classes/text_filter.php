@@ -106,6 +106,12 @@ class text_filter extends \core_filters\text_filter {
     /**
      * Wrap every ChemJax segment in a region of HTML in a placeholder span.
      *
+     * Matching is text-level only and does not account for HTML attribute boundaries.
+     * If a \cjx occurrence appears inside an HTML attribute value (e.g. title="\cjx{X}"),
+     * the placeholder span will be injected inside the quoted attribute, producing broken
+     * markup. This is an accepted limitation because ChemJax notation only legitimately
+     * occurs in text content, not inside attribute values.
+     *
      * @param string $text HTML without pre/code/script/textarea/placeholder blocks.
      * @return string
      */

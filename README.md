@@ -45,6 +45,11 @@ If you are upgrading from a previous version:
 - **Remove old ChemJax configuration from filter_mathjaxloader**: If you have manually added ChemJax lines to your MathJax loader configuration (in the `filter_mathjaxloader` settings), remove them. The new filter handles all configuration internally.
 - **Update content**: Ensure all chemistry notation in your courses uses the `\cjx{...}` syntax for compatibility with the new renderer.
 
+## Known Limitations
+
+- **HTML attribute values**: ChemJax notation inside HTML attribute values (e.g. `<div title="\cjx{X}">`) is not supported; the filter performs text-level matching and may inject markup inside quoted attributes.
+- **Code blocks**: ChemJax notation inside `<pre>` and `<code>` blocks is deliberately not rendered, consistent with MathJax 2's own behaviour.
+
 ## License
 
 This plugin is licensed under the GNU General Public License v3 or later (http://www.gnu.org/copyleft/gpl.html).
