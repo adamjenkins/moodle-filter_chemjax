@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ChemJax renderer</title>
+<style>html, body {margin: 0; padding: 0; overflow: hidden; background: transparent;}</style>
+</head>
+<body>
+<div id="output"></div>
+<script>
+(function() {
+    'use strict';
+    var origin = window.location.origin;
+    var ready = false;
+    var configured = false;
+    var pendingTex = null;
+
+    window.addEventListener('message', function(e) {
+        if (e.origin !== origin || !e.data) {
+            return;
+        }
+        if (e.data.type === 'chemjax-config' && !configured) {
+            configured = true;
+            configure(e.data);
+        } else if (e.data.type === 'chemjax-render') {
+            pendingTex = String(e.data.tex);
+            typeset();
+        }
+    });
+
+    function configure(cfg) {
+        window.bondlen = Number(cfg.bondlen) || 20;
+        window.MathJax = {
+            skipStartupTypeset: true,
+            messageStyle: 'none',
+            showMathMenu: false,
+            extensions: ['Safe.js'],
+            'HTML-CSS': {styles: {'.MathJax .xypic svg': {'vertical-align': 'baseline'}}},
+            TeX: {
+                extensions: ['[ChemJax]/chemfig3.js', '[ChemJax]/xypic.js', '[ChemJax]/mhchem-3.2.0.js',
+                             'AMSmath.js', 'AMSsymbols.js', 'noErrors.js', 'noUndefined.js']
+            },
+            AuthorInit: function() {
+                window.MathJax.Ajax.config.path.ChemJax = new URL('extensions/TeX', window.location.href).href;
+            },
+            errorSettings: {message: ['[ChemJax?]']}
+        };
+        var script = document.createElement('script');
+        script.src = String(cfg.mathjaxurl).replace(/\/+$/, '') + '/MathJax.js?config=TeX-AMS_HTML';
+        script.onload = function() {
+            window.MathJax.Hub.Register.StartupHook('End', function() {
+                ready = true;
+                typeset();
+            });
+        };
+        document.head.appendChild(script);
+    }
+
+    // Bare \cjx input has no math delimiters, so tex2jax would skip it:
+    // wrap each \\-separated line in \[...\]. Already-delimited input passes through.
+    function prepare(tex) {
+        var t = tex.trim();
+        if (/^\s*(\$\$|\\\(|\\\[)/.test(t)) {
+            return [t];
+        }
+        return t.split(/\s*\\\\\s*/).filter(Boolean).map(function(line) {
+            return '\\[' + line + '\\]';
+        });
+    }
+
+    function typeset() {
+        if (!ready || pendingTex === null) {
+            return;
+        }
+        var out = document.getElementById('output');
+        var lines = prepare(pendingTex);
+        pendingTex = null;
+        out.textContent = '';
+        lines.forEach(function(line) {
+            var div = document.createElement('div');
+            div.textContent = line;
+            out.appendChild(div);
+        });
+        window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, out], function() {
+            parent.postMessage({type: 'chemjax-height', height: document.body.scrollHeight}, origin);
+        });
+    }
+}());
+</script>
+</body>
+</html>
