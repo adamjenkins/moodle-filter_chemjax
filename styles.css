@@ -1,0 +1,9 @@
+.filter-chemjax-formula.filter-chemjax-rendered {
+    display: none;
+}
+
+iframe.filter-chemjax-frame {
+    border: 0;
+    display: block;
+    width: 100%;
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>extensions/TeX/chemfig3.js</location>
+        <name>ChemJax chemfig extension for MathJax 2</name>
+        <description>Implements the \cjx command (chemfig-style structural formulas) as a MathJax 2 TeX extension.</description>
+        <license>Apache</license>
+        <version>3.2.0</version>
+        <licenseversion>2.0</licenseversion>
+    </library>
+    <library>
+        <location>extensions/TeX/xypic.js</location>
+        <name>XyJax</name>
+        <description>Xy-pic drawing environment for MathJax 2.</description>
+        <license>Apache</license>
+        <version>1.0</version>
+        <licenseversion>2.0</licenseversion>
+    </library>
+    <library>
+        <location>extensions/TeX/mhchem-3.2.0.js</location>
+        <name>mhchem for MathJax 2</name>
+        <description>Chemical equation typesetting.</description>
+        <license>Apache</license>
+        <version>3.2.0</version>
+        <licenseversion>2.0</licenseversion>
+    </library>
+</libraries>
